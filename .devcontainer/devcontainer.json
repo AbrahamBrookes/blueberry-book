@@ -1,0 +1,17 @@
+{
+    "name": "Blueberry Book",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "laravel.test",
+    "remoteUser": "root",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"onecentlin.laravel-extension-pack",
+                "vue.volar",
+                "bradlc.vscode-tailwindcss"
+            ]
+        }
+    }
+}
