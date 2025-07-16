@@ -20,7 +20,6 @@ const form = useForm({
     customer_category_id: props.customer.customer_category_id || '',
     started_at: props.customer.started_at || '',
     description: props.customer.description || '',
-    status: props.customer.status || 'active',
 });
 
 const handleSubmit = () => {
@@ -133,25 +132,6 @@ const handleDelete = () => {
                                         </option>
                                     </select>
                                     <p v-if="form.errors.customer_category_id" class="mt-1 text-sm text-red-600">{{ form.errors.customer_category_id }}</p>
-                                </div>
-
-                                <!-- Status -->
-                                <div>
-                                    <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                                        Status
-                                    </label>
-                                    <select
-                                        id="status"
-                                        v-model="form.status"
-                                        class="block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                                        :class="{ 'border-red-500': form.errors.status }"
-                                    >
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                        <option value="pending">Pending</option>
-                                        <option value="suspended">Suspended</option>
-                                    </select>
-                                    <p v-if="form.errors.status" class="mt-1 text-sm text-red-600">{{ form.errors.status }}</p>
                                 </div>
                             </div>
                         </div>
