@@ -102,6 +102,12 @@ watch(flashMessage, () => {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    :href="route('customers.index')"
+                                    :active="route().current('customers.*')"
+                                >
+                                    Customers
+                                </NavLink>
                             </div>
                         </div>
 
@@ -208,6 +214,12 @@ watch(flashMessage, () => {
                             :active="route().current('dashboard')"
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('customers.index')"
+                            :active="route().current('customers.*')"
+                        >
+                            Customers
                         </ResponsiveNavLink>
                     </div>
 
