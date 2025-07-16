@@ -15,12 +15,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::with('customerCategory')
+        $customers = Customer::query()
+            ->with('customerCategory')
             ->orderBy('name')
             ->get();
 
         return Inertia::render('Customers/Index', [
-            'customers' => CustomerResource::collection($customers)->toArray(request()),
+            'customers' => $customers,
         ]);
     }
 
