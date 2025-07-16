@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateCustomerRequest extends FormRequest
+class StoreContactRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,9 @@ class UpdateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'reference' => 'required|string|max:255',
-            'customer_category_id' => 'required|exists:customer_categories,id',
-            'started_at' => 'required|date',
-            'description' => 'nullable|string',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'customer_id' => 'required|exists:customers,id',
         ];
     }
 }
