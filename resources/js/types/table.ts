@@ -2,7 +2,6 @@ export interface TableColumn {
     key: string;
     label: string;
     visible?: boolean;
-    sortable?: boolean;
     width?: string;
     align?: 'left' | 'center' | 'right';
 }

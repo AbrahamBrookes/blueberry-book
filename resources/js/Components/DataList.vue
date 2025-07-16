@@ -32,7 +32,6 @@ const emit = defineEmits<{
     search: [query: string];
     create: [];
     'item-click': [item: any];
-    'column-sort': [column: string, direction: 'asc' | 'desc'];
 }>();
 
 const searchQuery = ref('');
@@ -130,15 +129,6 @@ const getColumnAlignClass = (align?: string) => {
                                 >
                                     <div class="flex items-center space-x-1">
                                         <span>{{ column.label }}</span>
-                                        <button
-                                            v-if="column.sortable"
-                                            @click="$emit('column-sort', column.key, 'asc')"
-                                            class="ml-2 hover:text-gray-700 dark:hover:text-gray-200"
-                                        >
-                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>
-                                            </svg>
-                                        </button>
                                     </div>
                                 </th>
                                 <th v-if="!visibleColumns.length" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
