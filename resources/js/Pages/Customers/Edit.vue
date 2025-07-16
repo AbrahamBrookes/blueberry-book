@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import type { Customer, CustomerCategory } from '@/Models';
+import { formatISOStringDate } from '@utils/dateHelpers';
 
 interface Props {
     customer: Customer;
@@ -18,7 +19,7 @@ const form = useForm({
     name: props.customer.name || '',
     reference: props.customer.reference || '',
     customer_category_id: props.customer.customer_category_id || '',
-    started_at: props.customer.started_at || '',
+    started_at: formatISOStringDate(props.customer.started_at) || '',
     description: props.customer.description || '',
 });
 

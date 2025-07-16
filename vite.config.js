@@ -17,4 +17,11 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+            '@models': '/resources/js/Models',
+            '@utils': '/resources/js/utils',
+        },
+    },
 });

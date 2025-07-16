@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Customer } from '@models/Customer';
 import type { TableColumn } from '@/types/table';
+import { formatISOStringDate } from '@/utils/dateHelpers';
 
 interface Props {
     item: Customer;
@@ -62,7 +63,7 @@ const getColumnAlignClass = (columnKey: string): string => {
             </div>
         </td>
         <td v-if="isColumnVisible('started')" :class="['px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400', getColumnAlignClass('started')]">
-            {{ item.started_at }}
+            {{ formatISOStringDate(item.started_at) }}
         </td>
         <td v-if="isColumnVisible('actions')" :class="['px-6 py-4 whitespace-nowrap text-sm font-medium', getColumnAlignClass('actions')]">
             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -15,6 +15,7 @@
             "@/*": ["./resources/js/*"],
             "ziggy-js": ["./vendor/tightenco/ziggy"],
             "@models/*": ["./resources/js/Models/*"],
+            "@utils/*": ["./resources/js/utils/*"]
         }
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.vue"]
