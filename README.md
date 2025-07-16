@@ -59,3 +59,13 @@ You can access PHPMyAdmin at `http://localhost:8080` to manage your database.
 
 ### Devcontainer
 VSCode will notice there is a devcontainer spec in the folder and offer you to "relaunch in dev container" - click that button!
+
+## Tests
+We're using PHPunit so in order to test, run
+```bash
+art test
+```
+
+For the sake of this demo, there are only crud tests on our three main models: `Customer`, `CustomerCategory`, and `CustomerContact`:
+
+<img src="readme_files/crud-tests.jpg" alt="Blueberry Book Tests" />
