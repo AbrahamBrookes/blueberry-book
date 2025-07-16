@@ -23,6 +23,10 @@ class Customer extends Model
 		'status',
 	];
 
+    public $dates = [
+        'started_at',
+    ];
+
 	/**
 	 * Customers belong to a CustomerCategory.
 	 */
