@@ -1,61 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# <img src="readme_files/brand-icon-128.png" alt="Blueberry Book" width="22" /> Blueberry Book
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Manage your customers and their contacts in this simple laravel app:
 
-## About Laravel
+<img src="readme_files/blueberry-book-run-through.gif" alt="Blueberry Book demo" />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Blueberry Book is a laravel app using inertia and vuejs.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abrahambrookes/blueberry-book.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd blueberry-book
+   ```
+3. Build the docker stack:
+   ```bash
+   docker compose up -d
+   ```
+note: the container has been called `blueberry_book` in the `docker-compose.yml` file, so you can use `docker exec blueberry_book yada yada` to access the container shell. So now is a good time to:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4. Shell into the container:
+   ```bash
+   docker exec -it blueberry_book bash
+   ```
+You'll get a colourful shell so you know you're in the right place:
 
-## Learning Laravel
+<img src="readme_files/rainbow-shell.jpg" alt="Blueberry Book Shell" />
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+For simplicity, always work within the rainbow shell, and attach your vscode to this container using the Remote - Containers extension.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+5. Install dependencies:
+   ```bash
+   composer install
+   npm install
+   ```
+6. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+7. Generate the application key:
+   ```bash
+   php artisan key:generate
+   ```
+8. Migrate and seed the database:
+   ```bash
+   php artisan migrate --seed
+   ```
+9. Good to go - you can now access the app at `http://localhost:80` in your browser.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Dev tools
+### Aliases
+`php artisan` is aliased to `art` so you can ie: `art migrate` instead of `php artisan migrate`.
 
-## Laravel Sponsors
+### PHPMyAdmin
+You can access PHPMyAdmin at `http://localhost:8080` to manage your database.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Devcontainer
+VSCode will notice there is a devcontainer spec in the folder and offer you to "relaunch in dev container" - click that button!
 
-### Premium Partners
+## Tests
+We're using PHPunit so in order to test, run
+```bash
+art test
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+For the sake of this demo, there are only crud tests on our three main models: `Customer`, `CustomerCategory`, and `CustomerContact`:
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<img src="readme_files/crud-tests.jpg" alt="Blueberry Book Tests" />
