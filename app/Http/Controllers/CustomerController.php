@@ -45,7 +45,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return redirect()->route('customers.edit', $customer);
     }
 
     /**
@@ -53,7 +53,13 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $customer->load(['customerCategory', 'contacts']);
+        $customerCategories = \App\Models\CustomerCategory::orderBy('name')->get();
+
+        return Inertia::render('Customers/Edit', [
+            'customer' => $customer,
+            'customerCategories' => $customerCategories,
+        ]);
     }
 
     /**
@@ -61,7 +67,10 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->update($request->validated());
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer updated successfully.');
     }
 
     /**
@@ -69,6 +78,12 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        // Detach all contacts before deleting
+        $customer->contacts()->detach();
+
+        $customer->delete();
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer deleted successfully.');
     }
 }
