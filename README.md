@@ -47,3 +47,13 @@ For simplicity, always work within the rainbow shell, and attach your vscode to 
    php artisan migrate --seed
    ```
 9. Good to go - you can now access the app at `http://localhost:80` in your browser.
+
+## Dev tools
+### Aliases
+`php artisan` is aliased to `art` so you can ie: `art migrate` instead of `php artisan migrate`.
+
+### PHPMyAdmin
+You can access PHPMyAdmin at `http://localhost:8080` to manage your database.
+
+### Devcontainer
+VSCode will notice there is a devcontainer spec in the folder and offer you to "relaunch in dev container" - click that button!
