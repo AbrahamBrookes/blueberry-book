@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CustomerResource;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
@@ -14,7 +15,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::with('customerCategory')
+            ->orderBy('name')
+            ->get();
+
+        return Inertia::render('Customers/Index', [
+            'customers' => CustomerResource::collection($customers)->toArray(request()),
+        ]);
     }
 
     /**
