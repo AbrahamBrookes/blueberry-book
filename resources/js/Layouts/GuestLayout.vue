@@ -8,8 +8,9 @@ import { Link } from '@inertiajs/vue3';
         class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900"
     >
         <div>
-            <Link href="/">
+            <Link href="/" class="mb-6 flex flex-row items-center">
                 <ApplicationLogo class="h-20 w-20 fill-current text-gray-500" />
+				<h1 class="text-white ml-6">Blueberry Book</h1>
             </Link>
         </div>
 
