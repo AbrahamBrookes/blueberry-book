@@ -1,6 +1,8 @@
 # <img src="readme_files/brand-icon-128.png" alt="Blueberry Book" width="22" /> Blueberry Book
 
-Manage your customers and their contacts in this simple laravel app.
+Manage your customers and their contacts in this simple laravel app:
+
+<img src="readme_files/blueberry-book-run-through.gif" alt="Blueberry Book demo" />
 
 Blueberry Book is a laravel app using inertia and vuejs.
 
