@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
 
     // Customers routes
     Route::resource('customers', CustomerController::class);
+
+    // Contacts routes
+    Route::resource('contacts', \App\Http\Controllers\ContactController::class)
+        ->only(['store', 'update', 'destroy']);
 });
 
 require __DIR__.'/auth.php';
