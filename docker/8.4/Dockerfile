@@ -66,7 +66,11 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY php.ini /etc/php/8.4/cli/conf.d/99-sail.ini
 RUN chmod +x /usr/local/bin/start-container
 
+# rainbow shell
 RUN echo "PS1=\"\\[\\033[1;31m\\]\\u\\[\\033[0m\\]@\\[\\033[1;33m\\]\\h \\[\\033[1;32m\\]\\w \\[\\033[1;34m\\]\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\\[\\033[0m\\] \\$ \"" >> /root/.bashrc
+
+# helpful aliases
+RUN echo "alias art='php artisan'" >> /root/.bashrc
 
 EXPOSE 80/tcp
 
