@@ -1,18 +1,81 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import Toast from '@/Components/Toast.vue';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+// Toast notification state
+const showToast = ref(false);
+const toastMessage = ref('');
+const toastType = ref<'success' | 'error' | 'warning' | 'info'>('success');
+
+const page = usePage();
+
+// Computed property to get flash messages from session
+const flashMessage = computed(() => {
+    const props = page.props as any;
+    return {
+        success: props.flash?.success || props.success,
+        error: props.flash?.error || props.error,
+        warning: props.flash?.warning || props.warning,
+        info: props.flash?.info || props.info,
+    };
+});
+
+// Show toast when flash message is available
+const checkForFlashMessages = () => {
+    const flash = flashMessage.value;
+
+    if (flash.success) {
+        showToastNotification(flash.success, 'success');
+    } else if (flash.error) {
+        showToastNotification(flash.error, 'error');
+    } else if (flash.warning) {
+        showToastNotification(flash.warning, 'warning');
+    } else if (flash.info) {
+        showToastNotification(flash.info, 'info');
+    }
+};
+
+const showToastNotification = (message: string, type: 'success' | 'error' | 'warning' | 'info' = 'success') => {
+    toastMessage.value = message;
+    toastType.value = type;
+    showToast.value = true;
+};
+
+const closeToast = () => {
+    showToast.value = false;
+};
+
+// Check for flash messages on mount
+onMounted(() => {
+    checkForFlashMessages();
+});
+
+// Watch for changes in flash messages
+watch(flashMessage, () => {
+    checkForFlashMessages();
+}, { deep: true });
 </script>
 
 <template>
     <div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            <!-- Toast Notification -->
+            <Toast
+                v-if="showToast"
+                :message="toastMessage"
+                :type="toastType"
+                :show="showToast"
+                @close="closeToast"
+            />
+
             <nav
                 class="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800"
             >
