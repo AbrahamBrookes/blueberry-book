@@ -20,5 +20,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
 			'password' => Hash::make('password'),
         ]);
+
+		// seed categories first so that we can use them in the customers
+		$this->call(CustomerCategorySeeder::class);
+
+		// seed the customers
+		$this->call(CustomerSeeder::class);
+
+        // then contacts
+        $this->call(ContactSeeder::class);
     }
 }
