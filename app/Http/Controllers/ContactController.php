@@ -29,7 +29,11 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        $contact = Contact::create($request->only('first_name', 'last_name'));
+        $contact->customers()->attach($request->customer_id);
+
+        return redirect()->route('customers.show', $request->customer_id)
+            ->with('success', 'Contact created successfully.');
     }
 
     /**
@@ -53,7 +57,10 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $contact->update($request->validated());
+
+        return redirect()->route('customers.edit', $request->customer_id)
+            ->with('success', 'Contact updated successfully.');
     }
 
     /**
@@ -61,6 +68,11 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        // Delete the contact entirely
+        $contact->customers()->detach();
+        $contact->delete();
+
+        return redirect()->back()
+            ->with('success', 'Contact deleted successfully.');
     }
 }
