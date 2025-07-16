@@ -23,8 +23,8 @@ class Customer extends Model
 		'status',
 	];
 
-    public $dates = [
-        'started_at',
+    public $casts = [
+        'started_at' => 'datetime',
     ];
 
 	/**
