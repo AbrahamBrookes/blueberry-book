@@ -11,10 +11,6 @@ defineProps<{
 const navigateToCustomers = () => {
     router.visit('/customers');
 };
-
-const navigateToContacts = () => {
-    router.visit('/contacts');
-};
 </script>
 
 <template>
@@ -63,8 +59,7 @@ const navigateToContacts = () => {
 
                     <!-- Contacts Card -->
                     <div
-                        @click="navigateToContacts"
-                        class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 cursor-pointer hover:shadow-md transition-shadow duration-200"
+                        class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800 hover:shadow-md transition-shadow duration-200"
                     >
                         <div class="p-6">
                             <div class="flex items-center">
