@@ -4,10 +4,11 @@ import type { Contact } from '@models/Contact';
 export interface Customer {
     id: number;
     name: string;
-    reference: string;
-    started_at: string;
-    description: string;
+    reference?: string;
+    started_at?: string;
+    description?: string;
     customer_category_id: number;
+    status: string;
     created_at: string;
     updated_at: string;
 
