@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CustomerResource;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\Customer;
@@ -30,7 +29,11 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $customerCategories = \App\Models\CustomerCategory::get();
+
+        return Inertia::render('Customers/Create', [
+            'customerCategories' => $customerCategories,
+        ]);
     }
 
     /**
@@ -38,7 +41,10 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $customer = Customer::create($request->validated());
+
+        return redirect()->route('customers.index')
+            ->with('success', 'Customer created successfully.');
     }
 
     /**
